@@ -1,0 +1,980 @@
+/* Configurações gerais do corpo da página */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Estilização do cabeçalho */
+header {
+    background: #02021a;
+    background: linear-gradient(270deg, rgba(2, 2, 26, 1) 0%, rgba(9, 9, 121, 1) 19%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+    padding: 1em 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Container para alinhar logo e menu com o conteúdo principal */
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilização da logo no cabeçalho */
+.logo {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+}
+
+/* Estilização do menu de navegação */
+nav {
+    margin-left: auto;
+}
+
+/* Estilização da lista do menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilização dos itens do menu */
+nav ul li {
+    margin: 0 0.8em;
+}
+
+/* Estilização dos links do menu */
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito hover nos links do menu */
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Estilização da barra de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+}
+
+.search-container input {
+    padding: 0.5em 0.8em;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9em;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-container input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.search-container button {
+    background-color: #007bff;
+    border: none;
+    padding: 0.5em 0.8em;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.search-container button svg {
+    vertical-align: middle;
+}
+
+/* Estilização da mensagem de "nenhum resultado" */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Estilização da seção principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1em 2em;
+}
+
+/* Container para posts e barra lateral no index */
+.main-container {
+    display: flex;
+    gap: 1.5em;
+}
+
+/* Estilização da seção de posts com grid no index */
+#posts {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+/* Estilização da barra lateral no index */
+.sidebar {
+    flex: 1;
+    max-width: 300px;
+}
+
+/* Estilização dos posts como cartões (index) */
+#posts .post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    max-height: 400px;
+}
+
+/* Efeito hover nos posts (index) */
+#posts .post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilização do título dos posts no index */
+#posts .post h2 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    color: #333;
+    font-size: 1.3em;
+    min-height: 2.6em; /* Garante espaço para até 2 linhas */
+    max-width: 100%;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Estilização dos posts na sidebar do post.html */
+#related-posts-container .post {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f8ff 100%);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    padding: 0.4em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+/* Efeito hover nos posts na sidebar */
+#related-posts-container .post:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    border-color: #007bff;
+}
+
+/* Estilização do post no post.html */
+body:has(#post-content) .post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Estilização da imagem destacada no index */
+#posts .post-thumbnail {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 0.8em;
+}
+
+/* Estilização da imagem destacada na sidebar do post.html */
+#related-posts-container .post-thumbnail {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.3em;
+}
+
+/* Imagem flutuante no post.html */
+body:has(#post-content) .inline-img {
+    float: left;
+    width: 250px;
+    margin: 0 20px 15px 0;
+    border: 1px solid #000;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+/* Conteúdo do post no post.html */
+body:has(#post-content) #post-content {
+    min-width: 0;
+}
+
+/* Clearfix — mantém o container envolvendo a imagem flutuante */
+body:has(#post-content) #post-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Texto justificado dentro do conteúdo do post */
+body:has(#post-content) #post-content p {
+    text-align: justify;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+/* Estilização do título dos posts na sidebar do post.html */
+#related-posts-container .post h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1rem !important;
+    margin-bottom: 0.1em;
+    max-width: 100%;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Título no post.html */
+body:has(#post-content) .post h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    color: #111;
+    max-width: 100%;
+    word-break: break-word;
+    overflow: hidden;
+}
+
+/* Estilização da data dos posts no index */
+#posts .post .post-date {
+    color: #666;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+}
+
+/* Estilização da data dos posts na sidebar do post.html */
+#related-posts-container .post .post-date {
+    color: #666;
+    font-size: 0.6em !important;
+    margin-bottom: -5px;
+}
+
+/* Data no post.html */
+body:has(#post-content) .post .post-date {
+    font-size: 1em;
+    margin-bottom: 1em;
+    color: #666;
+}
+
+/* Estilização do resumo dos posts (index) */
+#posts .post .post-summary {
+    color: #444;
+    font-size: 0.9em;
+    margin-bottom: 0.8em;
+    flex-grow: 1;
+}
+
+/* Estilização do resumo dos posts na sidebar do post.html */
+#related-posts-container .post .post-summary {
+    color: #444;
+    font-size: 14px !important;
+    margin-bottom: 0.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Estilização do link "Leia mais" (index e sidebar) */
+.read-more {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.7em;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    align-self: flex-end;
+    position: relative;
+}
+
+/* Efeito hover no link "Leia mais" */
+.read-more:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Estilização da paginação */
+.pagination {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+/* Estilização dos botões de paginação */
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    margin: 0 0.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito hover nos botões de paginação */
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilização de botão desativado */
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Estilização dos banners de anúncio */
+.ad-banner {
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+/* Estilização do banner no topo do index */
+.top-ad {
+    max-width: 728px;
+    height: 90px;
+    margin: 0.5em auto;
+}
+
+/* Estilização do banner na barra lateral */
+.sidebar-ad {
+    max-width: 300px;
+    height: 250px;
+}
+
+/* Estilização do banner no post */
+.post-ad {
+    max-width: 728px;
+    height: 90px;
+    margin: 1.5em 0;
+    clear: both;
+}
+
+/* Placeholder para anúncios (visual de teste) */
+.ad-placeholder {
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Estilização da seção de compartilhamento */
+.share-section {
+    margin: 2em 0;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.share-section h3 {
+    font-size: 1.5em;
+    color: #111;
+    margin-bottom: 1em;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.share-button {
+    background-color: #007bff;
+    padding: 0.5em;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.share-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilização da seção de comentários */
+.comments-section {
+    margin: 2em 0;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comments-section h3 {
+    font-size: 1.5em;
+    color: #111;
+    margin-bottom: 1em;
+}
+
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#comment-form .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#comment-form label {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+#comment-form input,
+#comment-form textarea {
+    padding: 0.8em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+#comment-form input:focus,
+#comment-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#comment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#comment-form .submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#comment-form .submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.comment {
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1em;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment p {
+    margin: 0.5em 0;
+}
+
+.comment .comment-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment .comment-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Estilização da seção de posts relacionados na sidebar */
+.related-posts {
+    margin: 0;
+}
+
+.related-posts h3 {
+    font-size: 1.5em;
+    color: #111;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+/* Estilização do container de post e sidebar */
+.post-container {
+    display: flex;
+    gap: 1.5em;
+}
+
+.post-wrapper {
+    flex: 3;
+    width: 75%;
+}
+
+.sidebar {
+    flex: 1;
+    max-width: 300px;
+    width: 25%;
+}
+
+/* Estilização do rodapé */
+footer {
+    background: #02021a;
+    background: linear-gradient(270deg, rgba(2, 2, 26, 1) 0%, rgba(9, 9, 121, 1) 19%, rgba(0, 212, 255, 1) 100%);
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    width: 100%;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+/* Estilização da seção de contato */
+.contact-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    color: #111;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.contact-section p {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
+}
+
+/* Estilização do formulário de contato */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.8em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Estilização da seção Sobre */
+.about-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    color: #111;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.about-section p {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+.about-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização da seção de criação de posts */
+.create-post-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.create-post-section h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+    color: #111;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.create-post-form .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.create-post-form label {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+}
+
+.create-post-title,
+.create-post-summary,
+.create-post-date {
+    padding: 0.8em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.create-post-title:focus,
+.create-post-summary:focus,
+.create-post-date:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.create-post-summary {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.create-post-image {
+    padding: 0.5em 0;
+}
+
+.create-post-image-preview {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    max-width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    position: relative;
+    display: none;
+}
+
+.create-post-image-preview img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.create-post-editor {
+    min-height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.create-post-editor .ql-container {
+    font-size: 1em;
+    min-height: 150px;
+}
+
+.create-post-form .submit-button {
+    align-self: center;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+    #posts {
+        grid-template-columns: 1fr;
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .post-container {
+        flex-direction: column;
+    }
+
+    .post-wrapper {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .sidebar-ad {
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .top-ad {
+        max-width: 100%;
+        height: 90px;
+    }
+
+    body:has(#post-content) .post {
+        max-width: 100%;
+    }
+
+    body:has(#post-content) .inline-img {
+        float: none;
+        width: 100%;
+        margin: 0 0 15px 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .contact-section,
+    .about-section,
+    .create-post-section {
+        padding: 1em;
+    }
+
+    .contact-form,
+    .create-post-form {
+        max-width: 100%;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .create-post-title,
+    .create-post-summary,
+    .create-post-date {
+        font-size: 0.9em;
+    }
+
+    .submit-button {
+        padding: 0.6em 1em;
+    }
+
+    .about-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .search-container {
+        max-width: 100%;
+        margin-left: 0.5em;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 0.5em;
+    }
+
+    .share-buttons {
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .share-section,
+    .comments-section {
+        padding: 1em;
+    }
+
+    #comment-form {
+        max-width: 100%;
+    }
+
+    #posts .post {
+        max-height: 450px;
+    }
+
+    #posts .post h2 {
+        font-size: 1.1em;
+        min-height: 2.2em;
+    }
+
+    #related-posts-container .post {
+        margin-bottom: 0.5em;
+    }
+
+    #related-posts-container .post h2 {
+        font-size: 0.9em !important;
+        margin-bottom: 0.05em;
+        max-width: 100%;
+        word-break: break-word;
+    }
+
+    #related-posts-container .post-thumbnail {
+        height: 70px;
+        margin-bottom: 0.2em;
+    }
+
+    #related-posts-container .post .post-date {
+        font-size: 0.55em !important;
+        margin-bottom: -5px;
+    }
+
+    #related-posts-container .post .post-summary {
+        font-size: 12px !important;
+        margin-bottom: 0.05em;
+    }
+
+    .read-more {
+        font-size: 0.65em;
+        padding: 0.15em 0.3em;
+    }
+
+    body:has(#post-content) .post h2 {
+        font-size: 1.8em;
+        max-width: 100%;
+        word-break: break-word;
+    }
+
+    .create-post-editor {
+        min-height: 150px;
+    }
+
+    .create-post-editor .ql-container {
+        font-size: 0.9em;
+        min-height: 120px;
+    }
+
+    .create-post-image-preview {
+        max-height: 150px;
+    }
+}

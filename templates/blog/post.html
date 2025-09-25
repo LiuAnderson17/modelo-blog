@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} - Meu Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    {% csrf_token %}
+</head>
+<body>
+    {% include 'blog/header.html' %}
+
+    <main>
+        <div class="post-container">
+            <div class="post-wrapper">
+                <article class="post">
+                    <h2>{{ post.title }}</h2>
+                    <p class="post-date">{{ post.date|date:"d/m/Y H:i" }}</p>
+                    {% if user.is_authenticated and user.is_staff %}
+                        <div class="post-actions">
+                            <a href="{% url 'edit_post' pk=post.pk %}" class="edit-button">Editar</a>
+                            <form action="{% url 'delete_post' pk=post.pk %}" method="post" class="delete-post-form">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-button">Excluir</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                    {% if post.thumbnail %}
+                        <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="inline-img">
+                    {% endif %}
+                    <div id="post-content">{{ post.content|safe }}</div>
+                </article>
+
+                <div class="share-section">
+                    <h3>Compartilhe este post</h3>
+                    <div class="share-buttons">
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={{ post.title|urlencode }}" id="share-twitter" class="share-button" title="Compartilhar no Twitter/X">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" id="share-facebook" class="share-button" title="Compartilhar no Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?text={{ post.title|urlencode }}%20{{ request.build_absolute_uri|urlencode }}" id="share-whatsapp" class="share-button" title="Compartilhar no WhatsApp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+                                <path d="M3 21l1.65-3.08a9 9 0 1 1 3.36 3.36L3 21zm6-3a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm2.7-2.7a3 3 0 0 1-2.1-.87l-.15-.13-1.2 3.15 3.15-1.2-.13-.15a3 3 0 0 1-.87-2.1zm-1.5 1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <h3>Comentários</h3>
+                    <form id="comment-form" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="comment-name">Nome</label>
+                            <input type="text" id="comment-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-email">E-mail (opcional)</label>
+                            <input type="email" id="comment-email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment-text">Comentário</label>
+                            <textarea id="comment-text" name="comment" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Enviar Comentário</button>
+                    </form>
+                    <div id="comments-list"></div>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="related-posts">
+                    <h3>Posts Relacionados</h3>
+                    <div id="related-posts-container">
+                        {% for related_post in related_posts %}
+                            <div class="post">
+                                {% if related_post.thumbnail %}
+                                    <img src="{{ related_post.thumbnail.url }}" alt="{{ related_post.title }}" class="post-thumbnail">
+                                {% else %}
+                                    <img src="{% static 'blog/placeholder.png' %}" alt="Imagem padrão" class="post-thumbnail">
+                                {% endif %}
+                                <h2>{{ related_post.title }}</h2>
+                                <p class="post-date">{{ related_post.date|date:"d/m/Y H:i" }}</p>
+                                <p class="post-summary">{{ related_post.summary }}</p>
+                                <a href="{% url 'post_detail' pk=related_post.pk %}" class="read-more">Leia mais</a>
+                            </div>
+                        {% empty %}
+                            <p>Nenhum post relacionado encontrado.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="ad-banner sidebar-ad">
+                    <div class="ad-placeholder">Anúncio 300x250</div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    {% include 'blog/footer.html' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteForms = document.querySelectorAll('.delete-post-form');
+            deleteForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const postTitle = "{{ post.title|escapejs }}";
+                    if (confirm(`Tem certeza que deseja excluir o post "${postTitle}"?`)) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

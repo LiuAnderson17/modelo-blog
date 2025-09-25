@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+</head>
+<body>
+    {% include 'blog/header.html' %}
+
+    <main>
+        <div class="ad-banner top-ad">
+            <div class="ad-placeholder">Anúncio 728x90</div>
+        </div>
+
+        <div class="main-container">
+            <section id="posts">
+                {% for post in page_obj %}
+                    <article class="post">
+                        {% if post.thumbnail %}
+                            <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="post-thumbnail">
+                        {% else %}
+                            <img src="{% static 'blog/placeholder.png' %}" alt="Imagem padrão" class="post-thumbnail">
+                        {% endif %}
+                        <h2>{{ post.title }}</h2>
+                        <p class="post-date">{{ post.date|date:"d/m/Y H:i" }}</p>
+                        <p class="post-summary">{{ post.summary }}</p>
+                        <a href="{% url 'post_detail' pk=post.pk %}" class="read-more">Leia mais</a>
+                    </article>
+                {% empty %}
+                    <p class="no-results">Nenhum post encontrado.</p>
+                {% endfor %}
+            </section>
+
+            <aside class="sidebar">
+                <div class="ad-banner sidebar-ad">
+                    <div class="ad-placeholder">Anúncio 300x250</div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"><button>Anterior</button></a>
+            {% else %}
+                <button disabled>Anterior</button>
+            {% endif %}
+            <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}"><button>Próximo</button></a>
+            {% else %}
+                <button disabled>Próximo</button>
+            {% endif %}
+        </div>
+    </main>
+
+    {% include 'blog/footer.html' %}
+</body>
+</html>

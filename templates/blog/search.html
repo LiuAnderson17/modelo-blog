@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Busca - Meu Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    {% csrf_token %}
+</head>
+<body>
+    {% include 'blog/header.html' %}
+    <div class="ad-banner top-ad">
+        <div class="ad-placeholder">Anúncio 728x90</div>
+    </div>
+
+    <main>
+        <div class="main-container">
+            <section id="posts">
+                <h1>Resultados da Busca para "{{ query }}"</h1>
+                {% if page_obj %}
+                    {% for post in page_obj %}
+                        <article class="post">
+                            {% if post.thumbnail %}
+                                <img src="{{ post.thumbnail.url }}" alt="{{ post.title }}" class="post-thumbnail">
+                            {% else %}
+                                <img src="{% static 'blog/placeholder.png' %}" alt="Imagem padrão" class="post-thumbnail">
+                            {% endif %}
+                            <h2>{{ post.title }}</h2>
+                            <p class="post-date">{{ post.date|date:"d/m/Y H:i" }}</p>
+                            <p class="post-summary">{{ post.summary }}</p>
+                            <a href="{% url 'post_detail' pk=post.pk %}" class="read-more">Leia mais</a>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-results">Nenhum post encontrado para "{{ query }}".</p>
+                {% endif %}
+            </section>
+            <aside class="sidebar">
+                <div class="ad-banner sidebar-ad">
+                    <div class="ad-placeholder">Anúncio 300x250</div>
+                </div>
+            </aside>
+        </div>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="pagination-btn">Anterior</a>
+            {% else %}
+                <button disabled>Anterior</button>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="pagination-btn">Próximo</a>
+            {% else %}
+                <button disabled>Próximo</button>
+            {% endif %}
+        </div>
+    </main>
+
+    {% include 'blog/footer.html' %}
+</body>
+</html>

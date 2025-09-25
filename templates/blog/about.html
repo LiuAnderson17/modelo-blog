@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Meu Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/styles.css' %}">
+    {% csrf_token %}
+</head>
+<body>
+    {% include 'blog/header.html' %}
+    <div class="ad-banner top-ad">
+        <div class="ad-placeholder">Anúncio 728x90</div>
+    </div>
+
+    <main>
+        <section class="about-section">
+            <h1>Sobre o Blog</h1>
+            <img src="{% static 'blog/placeholder.png' %}" alt="Ícone do Blog" class="about-icon">
+            <p>Bem-vindo ao Meu Blog! Aqui, compartilhamos conteúdo inspirador e informativo sobre diversos temas. Nossa missão é trazer informações úteis e envolventes para nossos leitores, com posts bem elaborados e um design moderno.</p>
+            <p>Fundado em 2025, o blog é um espaço dedicado a explorar ideias, compartilhar conhecimento e conectar pessoas. Fique à vontade para explorar nossos posts e entrar em contato com sugestões ou dúvidas!</p>
+        </section>
+    </main>
+
+    {% include 'blog/footer.html' %}
+</body>
+</html>
