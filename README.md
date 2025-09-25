@@ -24,8 +24,8 @@ Um blog dinâmico desenvolvido com Django, permitindo a criação, edição, exc
 
 1. **Clonar o Repositório** (quando disponível no Git):
    ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd meu-blog-django
+   git clone https://github.com/LiuAnderson17/modelo-blog.git .
+   
    ```
 
 2. **Criar e Ativar um Ambiente Virtual**:
@@ -36,12 +36,7 @@ Um blog dinâmico desenvolvido com Django, permitindo a criação, edição, exc
    ```
 
 3. **Instalar Dependências**:
-   Crie um arquivo `requirements.txt` com:
-   ```
-   Django>=4.0
-   Pillow
-   ```
-   Execute:
+   
    ```bash
    pip install -r requirements.txt
    ```
